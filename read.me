@@ -1,0 +1,41 @@
+import express from "express";
+import bodyParser from "bodyParser";
+import path,{ dirname } from "path";
+import { url } from "inspector";
+import { fileURLToPath } from "url";
+var __dirname = dirname(fileURLToPath(import.meta.url));
+const app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(express.static("1.public"));
+app.set('view engine', 'ejs');
+
+app.get('/',(req,res) => {
+    res.send("<h1>hello world</h1>");
+});
+
+app.listen(3000,() => {
+    console.log("server started running on port 3000");
+}); 
+
+// package.json modification:
+
+{
+  "name": "backend-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "solution.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon solution.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
